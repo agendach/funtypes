@@ -47,7 +47,7 @@ export function ParsedValue<TUnderlying extends RuntypeBase<unknown>, TParsed>(
       },
       t(value, internalTest) {
         return config.test
-          ? internalTest(config.test, value)
+          ? internalTest(config.test, config.parse ? config.parse(value) : value)
           : failure(
               `${config.name || `ParsedValue<${show(underlying)}>`} does not support Runtype.test`,
             );
